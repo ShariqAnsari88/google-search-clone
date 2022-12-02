@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { fetchDataFromApi } from "../utils/api";
+import SearchResultHeader from "./SearchResultHeader";
+import Footer from "./Footer";
 
 const SearchResult = () => {
     const [result, setResult] = useState();
@@ -9,7 +11,7 @@ const SearchResult = () => {
     const { query } = useParams();
 
     useEffect(() => {
-        fetchSearchResults();
+        // fetchSearchResults();
     }, [query]);
 
     const fetchSearchResults = () => {
@@ -22,7 +24,13 @@ const SearchResult = () => {
         });
     };
 
-    return <div>SearchResult</div>;
+    return (
+        <div className="flex flex-col min-h-[100vh]">
+            <SearchResultHeader />
+            <main className="grow"></main>
+            <Footer />
+        </div>
+    );
 };
 
 export default SearchResult;
