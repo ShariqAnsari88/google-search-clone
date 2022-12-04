@@ -21,7 +21,7 @@ const menu = [
 const SearchResultHeader = () => {
     const [selectedMenu, setSelectedMenu] = useState("All");
     return (
-        <div className="p-[15px] pb-0 md:pr-5 md:pl-20 md:pt-7 border-b border-[#ebebeb] flex md:block flex-col items-center">
+        <div className="p-[15px] pb-0 md:pr-5 md:pl-20 md:pt-7 border-b border-[#ebebeb] flex md:block flex-col items-center sticky top-0 bg-white">
             <div className="flex items-center justify-between w-full">
                 <div className="flex items-center grow">
                     <Link to="/">
