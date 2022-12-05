@@ -1,7 +1,6 @@
 import React from "react";
 
-const menu = ["About", "Advertising", "Business", "How Search works"];
-const settingMenu = ["Privacy", "Terms", "Settings"];
+import { quickLinks, settingMenu } from "../utils/constants";
 
 const Footer = () => {
     return (
@@ -14,7 +13,7 @@ const Footer = () => {
 
             <div className="flex flex-col md:flex-row justify-between py-3 md:py-0 md:px-[15px] border-b border-[#dadce0]">
                 <div className="flex justify-center">
-                    {menu.map((menu, index) => (
+                    {quickLinks.map((menu, index) => (
                         <span
                             key={index}
                             className="text-[#70757a] text-[12px] md:text-[14px] leading-none p-[10px] md:p-[15px]"

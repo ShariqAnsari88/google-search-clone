@@ -10,14 +10,7 @@ import Logo from "../assets/google-logo.png";
 import SearchInput from "./SearchInput";
 import ProfileIcon from "./ProfileIcon";
 import { Context } from "../utils/ContextApi";
-
-const menu = [
-    { name: "All", icon: <GoSearch /> },
-    { name: "Images", icon: <BsImage size={14} /> },
-    { name: "News", icon: <BiNews /> },
-    { name: "Videos", icon: <RiVideoLine /> },
-    { name: "Shopping", icon: <SlTag size={14} /> },
-];
+import { menu } from "../utils/Constants";
 
 const SearchResultHeader = () => {
     const [selectedMenu, setSelectedMenu] = useState("All");

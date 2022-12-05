@@ -1,8 +1,4 @@
 const SearchedImageItemTemplate = ({ data }) => {
-    function createMarkup(html) {
-        return { __html: html };
-    }
-
     return (
         <div
             className="group flex flex-col py-3 cursor-pointer"
