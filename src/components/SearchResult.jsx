@@ -13,10 +13,10 @@ const SearchResult = () => {
     const [result, setResult] = useState();
     const { query, startIndex } = useParams();
     const { imageSearch } = useContext(Context);
-    console.log(useParams());
 
     useEffect(() => {
         fetchSearchResults();
+        window.scrollTo(0, 0);
     }, [query, startIndex, imageSearch]);
 
     const fetchSearchResults = () => {
