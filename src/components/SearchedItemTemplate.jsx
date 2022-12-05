@@ -6,7 +6,7 @@ const SearchedItemTemplate = ({ data }) => {
     return (
         <div className="flex flex-col py-3 max-w-[700px]">
             <div className="group cursor-pointer">
-                <div className="text-sm text-[#202124]">
+                <div className="text-sm truncate text-[#202124]">
                     {data.formattedUrl}
                 </div>
                 <div className="group-hover:underline text-xl text-[#1a0dab] pt-2">

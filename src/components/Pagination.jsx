@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Logo from "../assets/google-pagination-logo.png";
 
 const pagination = [
-    { page: 1, startIndex: 0 },
+    { page: 1, startIndex: 1 },
     { page: 2, startIndex: 11 },
     { page: 3, startIndex: 21 },
     { page: 4, startIndex: 31 },
@@ -26,37 +26,41 @@ const Pagination = ({ queries }) => {
         setPage(pagination[0].startIndex);
     }, [query]);
 
-    const selectPageNum = (startIndex) => {
+    const paginationClickHandler = (startIndex) => {
         setPage(startIndex);
         navigate(`/${query}/${startIndex}`);
     };
 
     return (
         <div className="flex flex-col items-center py-14 max-w-[700px]">
-            <div className="flex items-center gap-6 text-[#4285f4]">
+            <div className="relative text-[#4285f4]">
                 {queries.previousPage && (
                     <div
-                        className="relative"
+                        className="absolute left-[-30px] md:left-[-40px] top-[10px]"
                         onClick={() =>
-                            selectPageNum(queries.previousPage[0].startIndex)
+                            paginationClickHandler(
+                                queries.previousPage[0].startIndex
+                            )
                         }
                     >
                         <FiChevronLeft size={20} className="cursor-pointer" />
-                        <span className="cursor-pointer absolute left-[-5px] top-[30px]">
+                        <span className="cursor-pointer absolute left-[-5px] top-[30px] hidden md:block">
                             Prev
                         </span>
                     </div>
                 )}
-                <img className="w-[300px]" src={Logo} />
+                <img className="w-[250px] md:w-[300px]" src={Logo} />
                 {queries.nextPage && (
                     <div
-                        className="relative"
+                        className="absolute right-[-30px] md:right-[-40px] top-[10px]"
                         onClick={() =>
-                            selectPageNum(queries.nextPage[0].startIndex)
+                            paginationClickHandler(
+                                queries.nextPage[0].startIndex
+                            )
                         }
                     >
                         <FiChevronRight size={20} className="cursor-pointer" />
-                        <span className="cursor-pointer absolute left-[-5px] top-[30px]">
+                        <span className="cursor-pointer absolute left-[-5px] top-[30px] hidden md:block">
                             Next
                         </span>
                     </div>
@@ -66,7 +70,7 @@ const Pagination = ({ queries }) => {
                 {pagination.map((p) => (
                     <span
                         key={p.page}
-                        onClick={() => selectPageNum(p.startIndex)}
+                        onClick={() => paginationClickHandler(p.startIndex)}
                         className={`cursor-pointer ${
                             page === p.startIndex ? "text-black" : ""
                         }`}

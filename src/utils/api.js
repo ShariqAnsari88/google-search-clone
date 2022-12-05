@@ -3,16 +3,16 @@ import axios from "axios";
 const BASE_URL = "https://www.googleapis.com/customsearch/v1";
 
 const params = {
-    key: "AIzaSyDxp2L2-VG-2GiyFxAZzRuMx3tY4QhRSRo",
-    cx: "01c4749516f764d9b",
+    key: "AIzaSyCbcludrxXynEXFf-f3EwSqwsQ85oVnrhY",
+    cx: "468cf60d563d34b30",
 };
 
 // cpd:
-// key: 'AIzaSyDxp2L2-VG-2GiyFxAZzRuMx3tY4QhRSRo'
+// key: 'AIzaSyDxp2L2-VG-2GiyFxAZzRuMx3tY4QhRSRo',
 // cx: '01c4749516f764d9b'
 
 // jsdev:
-// key: "AIzaSyCbcludrxXynEXFf-f3EwSqwsQ85oVnrhY"
+// key: "AIzaSyCbcludrxXynEXFf-f3EwSqwsQ85oVnrhY",
 // cx: "468cf60d563d34b30",
 
 export const fetchDataFromApi = async (payload) => {

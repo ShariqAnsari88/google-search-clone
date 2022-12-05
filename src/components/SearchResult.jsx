@@ -1,30 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 
 import { fetchDataFromApi } from "../utils/api";
 import SearchResultHeader from "./SearchResultHeader";
 import Footer from "./Footer";
 import SearchedItemTemplate from "./SearchedItemTemplate";
+import SearchedImageItemTemplate from "./SearchedImageItemTemplate";
 import Pagination from "./Pagination";
+import { Context } from "../utils/ContextApi";
 
 const SearchResult = () => {
     const [result, setResult] = useState();
-    const [loading, setLoading] = useState(false);
     const { query, startIndex } = useParams();
+    const { imageSearch } = useContext(Context);
     console.log(useParams());
 
     useEffect(() => {
         fetchSearchResults();
-    }, [query, startIndex]);
+    }, [query, startIndex, imageSearch]);
 
     const fetchSearchResults = () => {
-        setLoading(true);
-        // const payload = { q: query, start: 0, searchType: "image" };
-        const payload = { q: query, start: startIndex };
+        let payload = { q: query, start: startIndex };
+        if (imageSearch) {
+            payload.searchType = "image";
+        }
         fetchDataFromApi(payload).then((res) => {
             console.log(res);
             setResult(res);
-            setLoading(false);
         });
     };
 
@@ -36,13 +38,23 @@ const SearchResult = () => {
             <SearchResultHeader />
             <main className="grow p-[12px] pb-0 md:pr-5 md:pl-20">
                 <div className="flex text-sm text-[#70757a] mb-3">{`About ${searchInformation.formattedTotalResults} results in (${searchInformation.formattedSearchTime})`}</div>
-                {items.map((item, index) => (
-                    <SearchedItemTemplate key={index} data={item} />
-                ))}
-                <Pagination
-                    queries={queries}
-                    // fetchSearchResults={fetchSearchResults}
-                />
+                {!imageSearch ? (
+                    <>
+                        {items.map((item, index) => (
+                            <SearchedItemTemplate key={index} data={item} />
+                        ))}
+                    </>
+                ) : (
+                    <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4">
+                        {items.map((item, index) => (
+                            <SearchedImageItemTemplate
+                                key={index}
+                                data={item}
+                            />
+                        ))}
+                    </div>
+                )}
+                <Pagination queries={queries} />
             </main>
             <Footer />
         </div>
